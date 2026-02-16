@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Text, TIMESTAMP, Enum
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 
 from app.database import Base
 
@@ -14,3 +15,5 @@ class User(Base):
     restrictions = Column(Text)
     experience_level = Column(String(50), nullable=False)
     created_at = Column(TIMESTAMP, server_default=func.current_timestamp()) 
+
+    recommendations = relationship("Recommendation", back_populates="user", cascade="all, delete-orphan")
