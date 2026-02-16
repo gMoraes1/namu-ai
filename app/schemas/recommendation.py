@@ -22,7 +22,6 @@ class RecommendationResult(BaseModel):
     reasoning: str
     precautions: Optional[str] = None
 
-o
 class RecommendationResponse(RecommendationResult):
     id: int
     user_id: int
