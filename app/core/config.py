@@ -7,8 +7,8 @@ class Settings(BaseSettings):
     DB_HOST: str
     DB_PORT: int    
     DB_NAME: str
-    LLM_API_KEY: str
     LLM_MODEL: str
+    OLLAMA_BASE_URL: str
 
     class Config:
         env_file = ".env"

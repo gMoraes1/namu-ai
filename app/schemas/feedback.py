@@ -6,7 +6,7 @@ class FeedbackCreate(BaseModel):
     rating: int = Field(..., ge=1, le=5)
     comment: Optional[str] = Field(None, max_length=1000)
 
-class FeedbackReponse(BaseModel):
+class FeedbackResponse(BaseModel):
     id: int
     recommendation_id: int
     rating: int
