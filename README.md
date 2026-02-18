@@ -19,13 +19,26 @@ Desenvolvedor Backend Python com foco em IA.
 -   Pydantic
 -   Poetry (gerenciamento de dependências)
 -   Ollama (LLM local -- Llama3)
+-   Pytest
+-   Pytest-asyncio
 
 ------------------------------------------------------------------------
 
 # 🏗 Arquitetura do Projeto
 
-app/ ├── main.py ├── database.py ├── core/ ├── models/ ├── schemas/ ├── crud/ ├──
-routers/ ├── service/ └── utils/
+app/
+├── main.py
+├── database.py
+├── core/
+├── models/
+├── schemas/
+├── crud/
+├── routers/
+├── service/
+└── utils/
+
+tests/
+├── test_users.py
 
 Arquitetura modular seguindo boas práticas de backend.
 
@@ -124,6 +137,14 @@ POST /recommendations/{recommendation_id}/feedback
 ✔ SQL raw com JOIN e agregações\
 ✔ Arquitetura modular\
 ✔ Swagger automático
+✔ Testes automatizados com Pytest
+
+------------------------------------------------------------------------
+
+🔮 Próximas Melhorias
+- Implementação completa de testes automatizados para todas as rotas
+- Separação de banco de dados específico para ambiente de testes
+- Containerização completa da aplicação (API + DB + LLM)
 
 ------------------------------------------------------------------------
 
