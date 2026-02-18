@@ -23,5 +23,12 @@ class UserResponse(UserBase):
     id: int
     created_at: datetime
 
+class UserStatsResponse(BaseModel):
+    total_recommendations: int
+    total_feedbacks: int
+    average_rating: float
+
     class Config:
         from_attributes = True
+
+

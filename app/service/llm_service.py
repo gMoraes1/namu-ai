@@ -14,7 +14,7 @@ def generate_response(prompt: str) -> str:
             "num_predict": 300
         }
     }
-    response = requests.post(url, json=payload, timeout=180)
+    response = requests.post(url, json=payload, timeout=300 )
 
     if response.status_code != 200:
         raise Exception(f"LLM API error: {response.status_code} - {response.text}")     
