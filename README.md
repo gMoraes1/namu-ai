@@ -71,7 +71,9 @@ git clone https://github.com/gMoraes1/namu-ai cd namu-ai
 
 ## 2️⃣ Instalar dependências com Poetry
 
-pip install poetry poetry install poetry shell
+pip install, 
+poetry poetry install,  
+poetry shell
 
 ## 3️⃣ Configurar variáveis de ambiente
 
@@ -147,6 +149,16 @@ POST /recommendations/{recommendation_id}/feedback
 - Containerização completa da aplicação (API + DB + LLM)
 
 ------------------------------------------------------------------------
+
+## Executando os Testes
+- Para rodar os testes do projeto, execute o seguinte comando na raiz do projeto:
+
+```bash
+pytest -s
+```
+
+------------------------------------------------------------------------
+
 
 # 👨‍💻 Autor
 
