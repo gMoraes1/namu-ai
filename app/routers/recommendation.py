@@ -16,7 +16,7 @@ from app.models.recommendation import Recommendation
 
 from app.service.llm_service import generate_response
 from app.utils.prompt_builder import build_prompt
-
+from app.utils.llm_parser import extract_json_from_text
 
 router = APIRouter(prefix="/recommendations", tags=["recommendations"])
 
@@ -24,7 +24,7 @@ router = APIRouter(prefix="/recommendations", tags=["recommendations"])
 @router.post("/", response_model=RecommendationResponse)
 def create_recommendation(
     payload: RecommendationCreate,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
     user = user_crud.get_user_by_id(db, payload.user_id)
 
@@ -34,13 +34,19 @@ def create_recommendation(
     prompt = build_prompt(user, payload.context)
     raw_response = generate_response(prompt)
 
+
     try:
-        parsed = json.loads(raw_response)
+        try:
+            parsed = json.loads(raw_response)
+        except json.JSONDecodeError:
+            parsed = extract_json_from_text(raw_response)
+
         validated = RecommendationResult(**parsed)
+
     except Exception as e:
         raise HTTPException(
             status_code=500,
-            detail=f"Error parsing LLM response: {str(e)}"
+            detail=f"Error parsing LLM response: {str(e)}",
         )
 
     recommendation = recommendation_crud.create_recommendation(
@@ -61,9 +67,11 @@ def add_feedback(
     payload: FeedbackCreate,
     db: Session = Depends(get_db),
 ):
-    recommendation = db.query(Recommendation).filter(
-        Recommendation.id == recommendation_id
-    ).first()
+    recommendation = (
+        db.query(Recommendation)
+        .filter(Recommendation.id == recommendation_id)
+        .first()
+    )
 
     if not recommendation:
         raise HTTPException(status_code=404, detail="Recommendation not found")
