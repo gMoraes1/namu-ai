@@ -71,9 +71,9 @@ git clone https://github.com/gMoraes1/namu-ai cd namu-ai
 
 ## 2️⃣ Instalar dependências com Poetry
 
-pip install, 
-poetry poetry install,  
-poetry shell
+1. pip install poetry
+2. poetry install  
+3. poetry shell
 
 ## 3️⃣ Configurar variáveis de ambiente
 
@@ -95,8 +95,9 @@ docker compose up -d
 
 ## 5️⃣ Instalar e rodar ollama
 
-Linux : curl -fsSL https://ollama.com/install.sh | sh
-ollama pull llama3 ollama run llama3
+1. Linux : curl -fsSL https://ollama.com/install.sh | sh
+2. ollama pull llama3 
+3. ollama run llama3
 
 ## 6️⃣ Rodar API
 
